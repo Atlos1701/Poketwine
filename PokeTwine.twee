@@ -1,0 +1,1562 @@
+:: StoryTitle
+PokeTwine
+
+
+:: StoryData
+{
+  "ifid": "94A90DA9-5A75-424A-BBCD-8EF23C61FC4D",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "BOOT",
+  "tag-colors": {
+    "BattleSystem": "green",
+    "footer": "purple"
+  },
+  "zoom": 1
+}
+
+
+:: 100% List {"position":"600,50","size":"100,100"}
+<img src="Images\PokyDex.png"> : You'll be able to view this (with live progress tracking) at any time in the menu while in game.
+
+(text-colour:red)[''KANTO'']
+Pokemon: 0/151
+Cities: 0/10
+Areas: 0/50
+Quests: 0/50
+
+[[Back->New Game]]
+
+
+:: A1Placing {"position":"1100,1650","size":"100,100"}
+Place where?
+
+(link:"Place in Slot 1")[(set:$BedroomSlot1 to $SelectedItem)(set:$Inventory to it - (a:$SelectedItem))(go-to:"ACTIVITY #1: Bedroom Decoration")(if:$BedroomSlot1 is not 0)[(set:$Inventory to it + $BedroomSlot1)]]
+
+(link:"Place in Slot 2")[(set:$BedroomSlot2 to $SelectedItem)(set:$Inventory to it - (a:$SelectedItem))(go-to:"ACTIVITY #1: Bedroom Decoration")(if:$BedroomSlot2 is not 0)[(set:$Inventory to it + $BedroomSlot2)]]
+
+(link:"Place in Slot 3")[(set:$BedroomSlot3 to $SelectedItem)(set:$Inventory to it - (a:$SelectedItem))(go-to:"ACTIVITY #1: Bedroom Decoration")(if:$BedroomSlot3 is not 0)[(set:$Inventory to it + $BedroomSlot3)]]
+
+[[Back->ACTIVITY #1: Bedroom Decoration]]
+
+
+:: ACTIVITY #1: Bedroom Decoration {"position":"1200,1650","size":"100,100"}
+''BEDROOM DECORATION''
+
+Currently displayed:
+$BedroomSlot1
+$BedroomSlot2
+$BedroomSlot3
+
+What will you put?
+(for: each _item, ...$Inventory)[(if: _item contains "Decoration")[(link-goto:_item, "A1Placing")<br>[(set: $SelectedItem to _item)]]]
+
+[[Back->PalletAshInside2]]
+
+
+
+:: BOOT {"position":"100,100","size":"100,100"}
+(align:"=><=")+(box:"X=")[(text-style:"expand")[''(text-colour:red)[POKE TWINE]'']
+
+[[New Game]]
+
+[[Load Game]]
+]
+
+2026, Atlos
+
+v0[[.->Secret]]2 (visuals)
+
+(set:$Pokedex to (a: ))
+(set:$Gold to 200)
+(set: $Party to (a: ))
+(set: $box to (a: ))
+
+(set:$Qindex to (dm:
+	"Q1", "Unstarted"
+
+))
+
+(set:$Tindex to (dm:
+	"normal", (dm:
+        "rock", 0.5,
+        "ghost", 0,
+        "steel", 0.5
+        ),
+    "fire", (dm:
+    	"grass", 2,
+        "ice", 2,
+        "bug", 2,
+        "steel", 2,
+        "fire", 0.5,
+        "water", 0.5,
+        "rock" , 0.5,
+        "dragon", 0.5
+    	),
+    "water", (dm:
+    	"fire", 2,
+    	"ground", 2,
+    	"rock", 2,
+    	"water", 0.5,
+        "grass", 0.5, 
+        "dragon", 0.5
+    	),
+    "electric", (dm:
+    	"water", 2,
+        "flying", 2,
+        "electric", 0.5,
+        "grass", 0.5,
+        "dragon", 0.5,
+        "ground", 0
+        ),
+    "grass", (dm:
+    	"water", 2,
+    	"ground", 2,
+    	"rock", 2,
+        "fire", 0.5,
+        "Grass", 0.5,
+        "Poison", 0.5,
+        "Flying", 0.5,
+        "Bug", 0.5,
+        "Dragon", 0.5,
+        "Steel", 0.5
+		),
+    "ice", (dm:
+    	"grass", 2,
+        "ground", 2,
+        "flying", 2,
+        "dragon", 2,
+    	"fire", 0.5,
+        "water", 0.5,
+        "ice", 0.5,
+       " steel", 0.5
+    	),
+    "fighting", (dm:
+    	"normal", 2,
+        "ice", 2,
+        "rock", 2,
+        "dark", 2,
+        "steel", 2,
+        "Poison", 0.5,
+        "Flying", 0.5,
+        "Psychic", 0.5,
+        "Bug", 0.5,
+        "Fairy", 0.5
+    	),
+    "poison", (dm:
+    	"grass", 2,
+    	"fairy", 2,
+        "poison", 0.5,
+        "ground", 0.5,
+        "rock", 0.5,
+        "ghost", 0.5,
+        "steel", 0
+    	),
+    "ground", (dm:
+    	"fire", 2, 
+        "electric", 2,
+        "poison", 2, 
+        "rock", 2, 
+        "steel", 2,
+        "grass", 0.5,
+        "bug", 0.5,
+        "flying", 0
+    	),
+    "flying", (dm:
+    	"grass", 2,
+        "fighting", 2,
+        "bug", 2,
+        "electric", 0.5,
+        "rock", 0.5,
+        "steel", 0.5
+    	),
+    "psychic", (dm:
+    	"fighting", 2,
+        "poison", 2,
+        "psychic", 0.5,
+        "steel", 0.5,
+        "dark", 0
+    	)
+))
+
+(set:$Aindex to (dm:
+	"Tackle", (a:"normal", "physical", 35, 0, 0, 0, 0)
+
+))
+
+(set:$Route1Table to (a:
+	(dm: "Species", "Pidgey", "Rate", 50, "min", 2, "max", 4),
+    (dm: "Species", "Rattata", "Rate", 50, "min", 2, "max", 4)
+))
+
+(set: $PKindex to (dm:
+	"Bulbasaur", (dm:
+    	"Stats", (a: 45, 49, 65, 49, 65, 45),
+        "Types", (a: "grass", "poison"),
+        "Cry", "Bulbasauuur!",
+        "Moves", (a:"Tackle")
+    ),
+    
+	"Ivysaur", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "grass", "poison"),
+        "Cry", "Ivysauuuur!"
+    ),
+
+	"Venusaur", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "grass", "poison"),
+        "Cry", "Venusauuuur!",
+    ),
+
+	"Charmander", (dm:
+    	"Stats", (a: 39, 43, 50, 52, 60, 65),
+        "Types", (a: "fire"),
+        "Cry", "Charmander! Char!",
+        "Moves", (a:"Tackle")
+    ),
+
+	"Charmeleon", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "fire"),
+        "Cry", "Charmeeeleoon!"
+    ),
+
+	"Charizard", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "fire", "flying"),
+        "Cry", "Charizarrd!"
+    ),
+
+	"Squirtle", (dm:
+    	"Stats", (a: 44, 65, 64, 48, 50, 43),
+        "Types", (a: "water"),
+        "Cry", "Squirtle!",
+        "Moves", (a:"Tackle")
+    ),
+    
+	"Wartortle", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "water"),
+        "Cry", "WARtortle!"
+    ),
+    
+	"Blastoise", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "water"),
+        "Cry", "BLASToise!"
+    ),
+    
+    "Pidgey", (dm:
+    	"Stats", (a: 40, 40, 35, 45, 35, 56),
+        "Types", (a: "flying"),
+        "Cry", "Pii! Pii!",
+        "Moves", (a: "Tackle"),
+        "BaseXP", 50,
+        "png", "<img src='Images/PidgeyIcon.png'>"
+    ),
+    
+    "Rattata", (dm:
+    	"Stats", (a: 30, 35, 35, 56, 25, 72),
+        "Types", (a: "ground"),
+        "Cry", "Rata! Rata!",
+        "Moves", (a:"Tackle"),
+        "BaseXP", 51,
+        "png", "<img src='Images/RatataIcon.png'>"
+)))
+
+(set:$Inventory to (a: ))
+
+
+:: BattleIntro {"position":"1825,1150","size":"100,100"}
+Encounted a $EnemySpecies (lv$EnemyLevel)
+
+[[Go!->BattleMain]]
+
+(set:$CurrentPokemon to ($Party's 1))(set:$CurrentPokemonReturn to 1)
+(set:$EnemyHP to (floor:((($PKindex's ($EnemySpecies)'s Stats's 1)*$EnemyLevel)/50)+10))
+
+(set:$PKdefBonus to 0)
+(set: $PKattackBonus to 0)
+(set: $PKspeedBonus to 0)
+(set:$ENdefBonus to 0)
+(set: $ENattackBonus to 0)
+(set: $ENspeedBonus to 0)
+
+
+
+:: BattleItem {"position":"2075,1275","size":"100,100"}
+(text-colour:red)[''ITEMS'']
+
+Gold: $Gold
+Pokeballs: $PokeballCount (if:$PokeballCount > 0)[ [[Throw]]]
+Potions: $PotionCount (unless:$PotionCount is 0)[ [[Use->Potion]]]
+
+(for: each _item, ...$Inventory)[(link-goto:_item)<br>]
+
+[[Back->BattleMain]]
+
+(set:$MenuReturn to "BattleItem")
+
+
+:: BattleMain {"position":"1950,1150","size":"100,100"}
+(text-colour:red)[''BATTLE'']
+
+Enemy: lv$EnemyLevel $EnemySpecies ($EnemyHP/(print:(floor:((($PKindex's ($EnemySpecies)'s Stats's 1)*$EnemyLevel)/50)+10)))
+
+You: lv(print:$CurrentPokemon's lv) (print:$CurrentPokemon's Species) ((print:$CurrentPokemon's hp)/(print:(floor:((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)))
+
+''Actions''
+[[Move]]
+[[Item->BattleItem]]
+[[Pokemon->BattlePokemon]]
+(link-goto:"Run", $Return)
+
+
+:: BattlePokemon {"position":"1825,1275","size":"100,100"}
+(text-colour:red)[''SWITCH POKEMON'']
+
+Current Pokemon: lv(print:$CurrentPokemon's lv) (print:$CurrentPokemon's Species) ((print:$CurrentPokemon's hp)/(print:(floor:((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)))
+
+(if: ($Party's 1's hp > 0) and ($CurrentPokemonReturn is not 1))[\
+lv(print:$Party's 1's lv) \
+(link:$Party's 1's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 1)\
+(set:$CurrentPokemonReturn to 1)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 1's hp)/(print:(floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10)))\
+]\
+
+(if: (length of $Party) > 1)[(if: ($Party's 2's hp > 0) and ($CurrentPokemonReturn is not 2))[\
+lv(print:$Party's 2's lv) \
+(link:$Party's 2's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 2)\
+(set:$CurrentPokemonReturn to 2)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 2's hp)/(print:(floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 2)[(if: ($Party's 3's hp > 0) and ($CurrentPokemonReturn is not 3))[\
+lv(print:$Party's 3's lv) \
+(link:$Party's 3's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 3)\
+(set:$CurrentPokemonReturn to 3)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 3's hp)/(print:(floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 3)[(if: ($Party's 4's hp > 0) and ($CurrentPokemonReturn is not 4))[\
+lv(print:$Party's 4's lv) \
+(link:$Party's 4's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 4)\
+(set:$CurrentPokemonReturn to 4)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 4's hp)/(print:(floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 4)[(if: ($Party's 5's hp > 0) and ($CurrentPokemonReturn is not 5))[\
+lv(print:$Party's 5's lv) \
+(link:$Party's 5's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 5)\
+(set:$CurrentPokemonReturn to 5)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 5's hp)/(print:(floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 5)[(if: ($Party's 6's hp > 0) and ($CurrentPokemonReturn is not 6))[\
+lv(print:$Party's 6's lv) \
+(link:$Party's 6's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 6)\
+(set:$CurrentPokemonReturn to 6)\
+(set:$FirstTurn to "Player")\
+(go-to:"EnemyAI")\
+]\
+((print:$Party's 6's hp)/(print:(floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 's 6's lv)/50)+10)))\
+]]\
+[[Back->BattleMain]]
+
+
+:: Begining {"position":"975,100","size":"100,100"}
+<img src="Images\PokyDex.png"> : Good choice. (print:$Party's 1's Species) is a great pokemon. Now, we can get on our way. Your journey begins as you leave your home in Pallet Town and start heading to Route 1.
+
+<img src="Images\PokyDex.png"> : Good luck!
+
+[[Let's go!->PalletAsh]]
+
+(set:$PokemonLeft to 1)
+
+
+:: BoxSwitching {"position":"1325,1775","size":"100,100"}
+Send to wich slot?
+(link:"Slot 1")[(set:$box to it + (a:$Party's 1))(set:$Party's 1 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+(link:"Slot 2")[(set:$box to it + (a:$Party's 2))(set:$Party's 2 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+(link:"Slot 3")[(set:$box to it + (a:$Party's 3))(set:$Party's 3 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+(link:"Slot 4")[(set:$box to it + (a:$Party's 4))(set:$Party's 4 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+(link:"Slot 5")[(set:$box to it + (a:$Party's 5))(set:$Party's 5 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+(link:"Slot 6")[(set:$box to it + (a:$Party's 6))(set:$Party's 6 to $SelectedItem)(set:$box to it - (a:$SelectedItem))(go-to:"PC")]
+
+[[Back->PC]]
+
+
+:: Bulbasaur {"position":"2300,100","size":"100,100"}
+ENTRY #1
+
+<img src="Images\BulbasaurIcon.png"> ''BULBASAUR''
+(text-colour:green)[(grass type)](text-colour:magenta)[(poison type)]
+
+A small green creature with a plant on its back. It can extend vines to defend itself.
+
+Height: 0.7 m
+Weight: 6.9 kg
+
+(link-goto: "Back", $MenuReturn)
+
+
+:: BulbasaurStarter {"position":"850,150","size":"100,100"}
+You chose the grass pokemon Bulbasaur!
+
+<img src="Images\BulbasaurIcon.png"> : Bulbasauur!
+
+<img src="Images\PokyDex.png">(text-colour:red)[ : POKEDEX UPDATED]
+[[View?->Bulbasaur]]
+
+[[Next->Begining]]
+
+(set:$MenuReturn to "BulbasaurStarter")
+
+(set: _newPK to (dm: 
+	"Species", "Bulbasaur",
+    "lv", 5,
+    "hp", 14,
+    "png", "<img src='Images/BulbasaurIcon.png'>",
+    "xp", 96
+))
+
+(set: $Party to $Party + (a: _newPK))
+
+(set:$Pokedex to it + (a:"Bulbasaur"))
+
+
+:: CatchLoop {"position":"2200,1525","size":"100,100"}
+(set:$Timer to it - 1)Wiggle... (set:_roll to (random:100))(if:_roll >70)[(set:$next to "Caught")](else:)[(set:$next to "CatchLoop")(if:$Timer is 0)[(set:$next to "EnemyAI")(set:$FirstTurn to "Player")]]
+
+(link-goto:"Next", $next)
+
+
+
+:: Caught {"position":"2200,1650","size":"100,100"}
+You caught $EnemySpecies! (set:_lv to $EnemyLevel)(if:(floor:((6/5)*_lv*_lv*_lv)-(15*_lv*_lv)+(100*_lv)-140)>=0)[(set:$EnemyXp to (floor:((6/5)*_lv*_lv*_lv)-(15*_lv*_lv)+(100*_lv)-140))](else:)[(set:$EnemyXp to 0)]
+
+(if: length of $Party < 6)[It was added to your party!](else:)[It was sent to your box!]
+(if:$EnemySpecies is not in $Pokedex)[(set:$Pokedex to it + (a:$EnemySpecies))<br><img src="Images\PokyDex.png">(text-colour:red)[ : POKEDEX UPDATED]
+(link-goto:$EnemySpecies)(set:$MenuReturn to $Return)<br>]
+(link-goto:"Next", $Return)
+
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)
+
+(set: _newPK to (dm: 
+	"Species", $EnemySpecies,
+    "lv", $EnemyLevel,
+    "hp", $EnemyHP,
+    "png", $PKindex's $EnemySpecies's png,
+    "xp",  $EnemyXp
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+
+
+
+:: Charmander {"position":"2600,100","size":"100,100"}
+ENTRY #4
+
+<img src="Images\CharmanderIcon.png"> ''CHARMANDER''
+(text-colour:red)[(fire type)]
+
+A small red lizard with a flame at the end of its tail. It can breathe fire to defend itself.
+
+Height: 0.6 m 
+Weight: 8.5 kg
+
+(link-goto: "Back", $MenuReturn)
+
+
+:: CharmanderStarter {"position":"850,275","size":"100,100"}
+You chose the fire pokemon Charmander!
+
+<img src="Images\CharmanderIcon.png"> : Char! Char!
+
+<img src="Images\PokyDex.png">(text-colour:red)[ : POKEDEX UPDATED]
+[[View?->Charmander]]
+
+[[Next->Begining]]
+
+(set:$MenuReturn to "CharmanderStarter")
+
+(set: _newPK to (dm: 
+	"Species", "Charmander",
+    "lv", 5,
+    "hp", 13,
+    "png", "<img src='Images/CharmanderIcon.png'>",
+    "xp", 96
+))
+
+(set: $Party to $Party + (a: _newPK))
+
+(set:$Pokedex to it + (a:"Charmander"))
+
+
+:: Cities {"position":"475,50","size":"100,100"}
+<img src="Images\PokyDex.png"> : Before and after your adventures, you'll be able to explore the cities of the Pokemon world. You can rest at the PokeCenter, buy items at the shop, talk to NPCs, tackle gyms, and much more!
+
+[[Back->New Game]]
+
+
+:: DEV INFO {"position":"0,0","size":"100,100"}
+When catching new PKmon:
+
+(set: _newPK to (dm: 
+	"Species", "Charmander",
+    "lv", 5,
+    "hp", 29
+))
+
+(if:  (lenght of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to $box + (a: _newPK))]
+
+Index entry:
+
+	"Bulbasaur", (dm:
+    	"Stats", (a: ),
+        "Types", (a: "grass", "poison")
+    ),
+    
+Released Versions:
+
+v0 (nothing yet)
+
+v0.1(working game)
+
+v0.2(visuals)
+
+In dev:
+
+v0.3 (big world)
+
+Planned:
+
+v1.0 (Kanto)
+
+
+:: Defeat {"position":"2075,1525","size":"100,100"}
+(print:$CurrentPokemon's Species) fainted... (set:$PokemonLeft to it -1)
+
+(if:$PokemonLeft is 0)[No more Pokemon. [[Game Over->BOOT]]](else:)[
+(if: ($Party's 1's hp > 0) and ($CurrentPokemonReturn is not 1))[\
+lv(print:$Party's 1's lv) \
+(link:$Party's 1's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 1)\
+(set:$CurrentPokemonReturn to 1)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 1's hp)/(print:(floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10)))\
+]\
+
+(if: (length of $Party) > 1)[(if: ($Party's 2's hp > 0) and ($CurrentPokemonReturn is not 2))[\
+lv(print:$Party's 2's lv) \
+(link:$Party's 2's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 2)\
+(set:$CurrentPokemonReturn to 2)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 2's hp)/(print:(floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 2)[(if: ($Party's 3's hp > 0) and ($CurrentPokemonReturn is not 3))[\
+lv(print:$Party's 3's lv) \
+(link:$Party's 3's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 3)\
+(set:$CurrentPokemonReturn to 3)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 3's hp)/(print:(floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 3)[(if: ($Party's 4's hp > 0) and ($CurrentPokemonReturn is not 4))[\
+lv(print:$Party's 4's lv) \
+(link:$Party's 4's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 4)\
+(set:$CurrentPokemonReturn to 4)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 4's hp)/(print:(floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 4)[(if: ($Party's 5's hp > 0) and ($CurrentPokemonReturn is not 5))[\
+lv(print:$Party's 5's lv) \
+(link:$Party's 5's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 5)\
+(set:$CurrentPokemonReturn to 5)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 5's hp)/(print:(floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10)))\
+]]\
+
+(if: (length of $Party) > 5)[(if: ($Party's 6's hp > 0) and ($CurrentPokemonReturn is not 6))[\
+lv(print:$Party's 6's lv) \
+(link:$Party's 6's Species)[\
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)\
+(set:$CurrentPokemon to $Party's 6)\
+(set:$CurrentPokemonReturn to 6)\
+(go-to:"BattleMain")
+]\
+((print:$Party's 6's hp)/(print:(floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 's 6's lv)/50)+10)))\
+]]\
+
+]
+
+
+
+:: EnemyAI {"position":"2075,1400","size":"100,100"}
+(set: _maxpoints to 0)(for: each _move, ...$PKindex's $EnemySpecies's Moves)[(set:_points to 0)
+	(if: ($ENdefBonus or $ENattackBonus or $ENspeedBonus <10) and (($Aindex's _move's 5) is 5 or ($Aindex's _move's 6) is 5 or ($Aindex's _move's 7) is 5))[(set:_points to it + 8)]
+    (if: $Aindex's _move's 3 > 0)[(set:_points to it + 10)]
+    (if: $EnemyHP < (0.2*(floor:((($PKindex's ($EnemySpecies)'s Stats's 1)*$EnemyLevel)/50)+10)) and $Aindex's _move's 4 > 0)[(set:_points to it + 8)]
+    (set:_points to it + (random: -5, 5))
+	(if:_points >= _maxpoints)[(set:_maxpoints to _points)(set:$SelectedMove to _move)]
+]
+(go-to:"EnemyMoveMath")
+
+
+
+:: EnemyMoveMath {"position":"1950,1525","size":"100,100"}
+Enemy used $SelectedMove! (if:$Aindex's $SelectedMove's 2 is "physical")[(set: $userAttack to ($PKindex's ($EnemySpecies)'s Stats's 4)+$ENattackBonus)(set:$enemyDefense to ($PKindex's ($CurrentPokemon's Species)'s Stats's 4))](else:)[((set: $userAttack to ($PKindex's ($EnemySpecies)'s Stats's 5)+$ENattackBonus)(set:$enemyDefense to ($PKindex's ($CurrentPokemon's Species)'s Stats's 5))]\
+(set:$Effective to 1)
+(if:$PKindex's ($CurrentPokemon's Species)'s Types's 1 is in $Tindex's ($Aindex's $SelectedMove's 1))[
+(set:$Effective to ($Tindex's ($Aindex's $SelectedMove's 1)'s ($PKindex's ($CurrentPokemon's Species)'s Types's 1)))\
+](if: length of $PKindex's ($CurrentPokemon's Species)'s Types >1)[(if:$PKindex's ($CurrentPokemon's Species)'s Types's 2 is in $Tindex's ($Aindex's $SelectedMove's 1))[
+(set:$Effective to it *($Tindex's ($Aindex's $SelectedMove's 1)'s ($PKindex's ($CurrentPokemon's Species)'s Types's 2)))]]\
+
+(if:(floor:(((2*$EnemyLevel)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective>0)[It hits for (print:(floor:(((2*$EnemyLevel)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective)!<br>]\
+\
+(if:(floor:($Aindex's $SelectedMove's 4)*(((($PKindex's $EnemySpecies's Stats's 1)*$EnemyLevel)/50)+10)/100)>0)[It healed (print:(floor:($Aindex's $SelectedMove's 4)*(((($PKindex's $EnemySpecies's Stats's 1)*$EnemyLevel)/50)+10)/100))!<br>]\
+\
+(if:$Aindex's $SelectedMove's 5>0)[Its DEF/S.DEF increased by (print:$Aindex's $SelectedMove's 5)!<br>]\
+\
+(if:$Aindex's $SelectedMove's 6>0)[Its ATK/S.ATK increased by (print:$Aindex's $SelectedMove's 6)!<br>]\
+\
+(if:$Aindex's $SelectedMove's 7>0)[Its SPD increased by (print:$Aindex's $SelectedMove's 7)!<br>]\
+(set: $CurrentPokemon's hp to it - (floor:(((2*$EnemyLevel)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective)\
+\
+(if:$CurrentPokemon's hp <= 0)[(link-goto:"Defeat")](else:)[(if:$FirstTurn is "Player")[(link-goto:"Next", "BattleMain")](else:)[(link-goto:"Next", "PlayerMoveMath")]]
+
+(set: $CurrentPokemon's hp to it + (floor:($Aindex's $SelectedMove's 4)*(((($PKindex's $EnemySpecies's Stats's 1)*$EnemyLevel)/50)+10)/100))
+
+(set:$ENdefBonus to it + $Aindex's $SelectedMove's 5)
+(set:$ENattackBonus to it + $Aindex's $SelectedMove's 6)
+(set:$ENspeedBonus to it +$Aindex's $SelectedMove's 7)
+
+
+:: Farming Equipment {"position":"200,900","size":"100,100"}
+''Key item for Q1: Farming Equipment''
+A bag filled with tools for farming. You don't actually know how to use any of these, nor do you need to. Better just bring them to the farmer.
+
+(link-goto:"Back", $MenuReturn)
+
+
+:: Item {"position":"100,650","size":"100,100"}
+(text-colour:red)[''ITEMS'']
+
+Gold: $Gold
+Pokeballs: $PokeballCount
+Potions: $PotionCount (unless:$PotionCount is 0)[ [[Use->Potion]]]
+
+(for: each _item, ...$Inventory)[(link-goto:_item)<br>]
+
+[[Back->Menu]]
+
+(set:$MenuReturn to "Item")
+
+
+:: Journal {"position":"100,525","size":"100,100"}
+''JOURNAL''
+
+(text-colour:red)[''KANTO'']
+
+Pokedex: (print:length of $Pokedex)/151
+
+Quest Status:
+	Q1: (print:$Qindex's Q1)
+
+[[Back->Menu]]
+
+
+
+:: Load Game {"position":"100,225","size":"100,100"}
+(load-game:"Save")
+
+
+:: Map {"position":"350,525","size":"100,100"}
+[[Back->Menu]]
+
+
+:: Menu {"position":"100,400","size":"100,100"}
+(text-colour:red)[MENU]
+[[Pokedex]]
+[[Pokemon]]
+[[Item]]
+[[Journal]]
+[[Save]]
+[[Map]]
+
+(link-goto: "Back", $Location)
+
+
+:: Money for Equipment {"position":"100,800","size":"100,100"}
+''Key item for Q1: Money for Equipment''
+Some coins that the farmer gave you so that you can buy him new equipment. Shouldn't spend it on anything else...
+
+(link-goto:"Back", $MenuReturn)
+
+
+:: Move {"position":"1950,1275","size":"100,100"}
+(text-colour:red)[''MOVES'']
+(for: each _move, ...$PKindex's ($CurrentPokemon's Species)'s Moves)[(link-goto:_move, "TurnOrder")[(set: $SelectedMove to _move)]]
+
+[[Back->BattleMain]]
+
+
+:: New Game {"position":"225,100","size":"100,100"}
+<img src="Images\PokyDex.png"> : Hello! I'm your Pokedex! Welcome to PokeTwine!
+
+<img src="Images\PokyDex.png"> :  This is a huge open world game, with a ton of different activities and fun stuff. Ask me about anything, then we can get going!
+
+[[The Field]]
+[[Cities]]
+[[Quests]]
+[[Pokemon->Pokemon Tutorial]]
+[[100% List]]
+
+[[START]]
+
+
+:: PC {"position":"1200,1775","size":"100,100"}
+You turn on the PC.
+
+...pokemon.transfer.sytem = ONLINE
+
+Welcome to the Transfer Sytem! Please select a Pokemon from the box to place in your party!
+
+BOX
+(for: each _mon, ...$box)[(link:_mon's Species)[(set:$SelectedItem to _mon)(go-to:"BoxSwitching")]<br>]
+
+[[Back->PalletAshInside2]]
+
+
+:: Pallet Town Decoration {"position":"100,900","size":"100,100"}
+A trinket you bought in Pallet Town. Might look good in your room.
+
+(link-goto:"Back", $MenuReturn)
+
+
+:: PalletAsh {"position":"1300,1425","size":"100,100"}
+IN FRONT OF YOUR HOUSE
+
+You are standing in front of your small cottage. Its walls are white-painted wood planks, and it has a red tile roof. Around you, nothing but grass, fields and a river for a few hundred meters. To the east, a dirt path that goes through some plantations. To the north, a path to the center of the town. You can go inside the house. There is a sign here.
+
+[[East->PalletField]]
+[[North->PalletCenter]]
+[[Read sign->PalletAshSign]]
+[[Go inside->PalletAshInside1]]
+
+[[Menu]]
+
+(set:$Location to "PalletAsh")
+
+
+:: PalletAshInside1 {"position":"1200,1425","size":"100,100"}
+INSIDE YOUR HOUSE
+
+You step inside your house. As soon as you step inside, your mom gives you a big hug. You're standing in the spacious living room. A TV is put up against the wall opposite to the door, and there's a staircase on the right-side wall. You can exit the house, go up the stairs or talk to your mom.
+
+[[Exit the house->PalletAsh]]
+[[Go up the stairs->PalletAshInside2]]
+[[Talk to mom->PalletAshInsideMom]]
+
+[[Menu]]
+
+(set:$Location to "PalletAshInside1")
+
+
+:: PalletAshInside2 {"position":"1200,1525","size":"100,100"}
+INSIDE YOUR HOUSE
+
+You go up the wooden stairs and head to your bedroom instinctively. You step inside. Your bunkbed and pokemon plushies haven't moved since you left. If you got any cool items from your travels, this is a great spot to drop them off. Or you can go back to the living room. You can also use your PC.
+
+[[ACTIVITY #1: Bedroom Decoration]]
+[[Use PC->PC]]
+[[Go back downstairs->PalletAshInside1]]
+
+[[Menu]]
+
+(set:$Location to "PalletAshInside2")
+
+
+:: PalletAshInsideMom {"position":"1100,1425","size":"100,100"}
+You talk to your mom.
+
+MOM: Hello my little pumkin! You look tired. You shouldn't overwork yourself you know... 
+
+Want to rest?
+[[Yes->PalletAshInsideMom1]]
+[[No->PalletAshInside1]]
+
+
+:: PalletAshInsideMom1 {"position":"1100,1525","size":"100,100"}
+You and your pokemon rest a while...
+
+HP MAXED
+
+[[Back->PalletAshInside1]]
+
+(set:$Party's 1's hp to (floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10))]
+
+(if:  (length of $Party) > 1)[(set:$Party's 2's hp to (floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10))]
+
+(if:  (length of $Party) > 2)[(set:$Party's 3's hp to (floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10))]
+
+(if:  (length of $Party) > 3)[(set:$Party's 4's hp to (floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10))]
+
+(if:  (length of $Party) > 4)[(set:$Party's 5's hp to (floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10))]
+
+(if:  (length of $Party) > 5)[(set:$Party's 6's hp to (floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 6's lv)/50)+10))]
+
+
+:: PalletAshSign {"position":"1300,1525","size":"100,100"}
+You look at the wooden sign on a pole.
+
+(text-colour:grey)[NORTH PATH]: PALLET TOWN
+(text-colour:grey)[EAST PATH]: FIELDS, GARY'S HOUSE
+
+[[Back->PalletAsh]]
+
+
+:: PalletCenter {"position":"1300,1300","size":"100,100"}
+TOWN CENTER
+
+You reach a (relatively) dense part of Pallet Town. You're standing in the main plaza. A few rustic buildings circle you.  From where you are, you see a PokeMart, a Souvenir Shop and a Farming Shop. To the west, the river is flowing slowly as always. A small bridge lets go get across and to Prof. Oak's lab on the other side. To the south, you can take a dirt path to your house. Finally, the road to Viridian City lies to the north.
+
+[[PokeMart->PalletCenterPokeMart]]
+[[Souvenir Shop->PalletCenterSouv]]
+[[Farming Shop->PalletCenterFarm]]
+[[West->PalletOak]]
+[[South->PalletAsh]]
+[[North->Route 1-1]]
+
+[[Menu]]
+
+(set:$Location to "PalletCenter")
+
+
+:: PalletCenterFarm {"position":"1525,1175","size":"100,100"}
+PALLET TOWN FARMING SHOP
+
+You enter the farming shop. You never really got into farming, despite the surroundings of your house being almost only farmland. So no real reason to by anything here for yourself.
+
+(if:$Qindex's Q1 is "Step 1")[ [[Farming Equipment (Q1)->Q1-2]] ]
+
+[[Back->PalletCenter]]
+
+
+:: PalletCenterPokeMart {"position":"1400,1300","size":"100,100"}
+PALLET TOWN POKEMART
+
+You enter the PokeMart. Preparing before an adventure is always a good idea.
+
+Gold: $Gold
+
+(link:"Pokeball, 20g")[(if:$Gold >=20)[(set:$PokeballCount to it +1)(set:$Gold to it - 20)](else:)[(print:" Not enough money")]]
+
+(link:"Potion, 50g")[(if:$Gold >=50)[(set:$PotionCount to it +1)(set:$Gold to it - 50)](else:)[(print:" Not enough money")]]
+
+[[Back->PalletCenter]]
+
+
+:: PalletCenterSouv {"position":"1500,1300","size":"100,100"}
+PALLET TOWN SOUVENIR SHOP
+
+You step inside the souvenir shop. Since you live here, no real reason to "souvenir" it, but you can never have enough useless trinkets to put in your room.
+
+Gold: $Gold
+
+(set:_it to "Pallet Town Decoration")(unless:$Inventory contains _it or $BedroomSlot1 is _it or $BedroomSlot2 is _it or $BedroomSlot3 is _it)[(link:"Pallet Town Decoration, 50g")[(if:$Gold >=50)[(set:$Inventory to it + (a:"Pallet Town Decoration"))(set:$Gold to it - 50)](else:)[(print:" Not enough money")]]]
+
+[[Back->PalletCenter]]
+
+
+:: PalletField {"position":"1425,1425","size":"100,100"}
+FIELDS OF PALLET TOWN
+
+You're walking along a dirt path, going through some labored fields of wheat. At the end of the path to the east, you spot Gary's house. To the west, you can go to your home. (if:$Qindex's Q1 is "Unstarted")[Also, you spot a farmer who seems to have trouble with his plantation.] You let (print:$Party's 1's Species) out to walk with you, and it's walking alongside you.
+
+(print:$Party's 1's png) : (print:$PKindex's ($Party's 1's Species)'s Cry)
+
+[[East->PalletGary]]
+[[West->PalletAsh]]
+(if:$Qindex's Q1 is "Step 2")[[[Return to farmer->Q1-3]]<br>](if:$Qindex's Q1 is "Unstarted")[[[Go talk to the farmer->PalletFieldFarmer]]<br>]
+[[Menu]]
+
+(set:$Location to "PalletField")
+
+
+:: PalletFieldFarmer {"position":"1425,1525","size":"100,100"}
+You walk up to the farmer.
+
+''QUEST #1: Farming Equipment''
+FARMER: Oh hey Ash. Could you go into the village and fetch some new farming equipment? A Snorlax fell asleep on my old one yesterday, and when he left they were completely crushed. I'll cover the cost and pay you for it. What do you say?
+
+[[Begin quest->Q1-1]]
+[[Back->PalletField]]
+
+
+
+:: PalletGary {"position":"1550,1425","size":"100,100"}
+GARY'S HOUSE
+
+You don't have the keys, so you can't enter. It's a house shockingly similar to yours, but with a blue roof instead of a red one. You can go west back into the fields, nothing else to do actually.
+
+[[West->PalletField]]
+
+[[Menu]]
+
+(set:$Location to "PalletGary")
+
+
+:: PalletOak {"position":"900,1300","size":"100,100"}
+As you approach Oak's lab, you hear him shout to you from atop the hill.
+
+OAK: HEY ASH! The developer was too lazy to make this part. Come back later!
+
+[[Back->PalletCenter]]
+
+
+:: PartyPokemon {"position":"500,400","size":"100,100"}
+(print:$Party's $MenuReturn's png) lv(print:$Party's $MenuReturn's lv) (print:$Party's $MenuReturn's Species)(set:_lv to $Party's $MenuReturn's lv)
+
+XP: (print:$Party's $MenuReturn's xp)/(floor:((6/5)*_lv*_lv*_lv)-(15*_lv*_lv)+(100*_lv)-140)
+
+[[Back->Pokemon]]
+
+
+:: Pidgey {"position":"3800,100","size":"100,100"}
+ENTRY #16
+
+<img src="Images\PidgeyIcon.png"> ''PIDGEY''
+(text-colour:gray)[(normal type)](text-colour:cyan)[(flying type)]
+
+A small and calm bird. It's very docile, and was used to carry letters a long time ago.
+
+Height: 0.3 m
+Weight: 1.8 kg
+
+(link-goto: "Back", $MenuReturn)
+
+
+:: PlayerMoveMath {"position":"1950,1400","size":"100,100"}
+You used $SelectedMove! (if:$Aindex's $SelectedMove's 2 is "physical")[(set: $userAttack to ($PKindex's ($CurrentPokemon's Species)'s Stats's 4)+$PKattackBonus)(set:$enemyDefense to ($PKindex's $EnemySpecies's Stats's 4))](else:)[((set: $userAttack to ($PKindex's ($CurrentPokemon's Species)'s Stats's 5)+$PKattackBonus)(set:$enemyDefense to ($PKindex's $EnemySpecies's Stats's 5))]\
+(set:$Effective to 1)
+(if:$PKindex's $EnemySpecies's Types's 1 is in $Tindex's ($Aindex's $SelectedMove's 1))[
+(set:$Effective to ($Tindex's ($Aindex's $SelectedMove's 1)'s ($PKindex's $EnemySpecies's Types's 1)))\
+](if: length of $PKindex's $EnemySpecies's Types >1)[(if:$PKindex's $EnemySpecies's Types's 2 is in $Tindex's ($Aindex's $SelectedMove's 1))[
+(set:$Effective to it *($Tindex's ($Aindex's $SelectedMove's 1)'s ($PKindex's $EnemySpecies's Types's 2)))]]\
+\
+(if:(floor:(((2*$CurrentPokemon's lv)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective>0)[You hit for (print:(floor:(((2*$CurrentPokemon's lv)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective)!<br>]\
+\
+(if:(floor:($Aindex's $SelectedMove's 4)*(((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)/100)>0)[You healed (print:(floor:($Aindex's $SelectedMove's 4)*(((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)/100))!<br>]\
+\
+(if:$Aindex's $SelectedMove's 5>0)[DEF/S.DEF increased by (print:$Aindex's $SelectedMove's 5)!<br>]\
+\
+(if:$Aindex's $SelectedMove's 6>0)[ATK/S.ATK increased by (print:$Aindex's $SelectedMove's 6)!<br>]\
+\
+(if:$Aindex's $SelectedMove's 7>0)[SPD increased by (print:$Aindex's $SelectedMove's 7)!<br>]\
+(set: $EnemyHP to it - (floor:(((2*$CurrentPokemon's lv)/5+2)*($Aindex's $SelectedMove's 3)*$userAttack/$enemyDefense/50)+2)*$Effective)\
+\
+(if:$EnemyHP <= 0)[(link-goto:"Victory")](else:)[(if:$FirstTurn is "Enemy")[(link-goto:"Next", "BattleMain")](else:)[(link-goto:"Next", "EnemyAI")]]
+
+(set: $CurrentPokemon's hp to it + (floor:($Aindex's $SelectedMove's 4)*(((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)/100))
+
+(set:$PKdefBonus to it + $Aindex's $SelectedMove's 5)
+(set:$PKattackBonus to it + $Aindex's $SelectedMove's 6)
+(set:$PKspeedBonus to it +$Aindex's $SelectedMove's 7)
+
+
+:: Pokedex {"position":"225,400","size":"100,100"}
+<img src="Images\PokyDex.png"> (text-colour:red)[''POKEDEX'']
+
+[[Back->Menu]]
+
+1(if:$Pokedex contains "Bulbasaur")[ [[Bulbasaur->Bulbasaur]] ]
+2
+3
+4(if:$Pokedex contains "Charmander")[ [[Charmander->Charmander]] ]
+5
+6
+7(if:$Pokedex contains "Squirtle")[ [[Squirtle->Squirtle]] ]
+8
+9
+10
+11
+12
+13
+14
+15
+16(if:$Pokedex contains "Pidgey")[ [[Pidgey->Pidgey]] ]
+20
+17
+18
+19(if:$Pokedex contains "Rattata")[ [[Rattata->Rattata]] ]
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+
+(set:$MenuReturn to "Pokedex")
+
+
+:: Pokedex Decoration {"position":"200,800","size":"100,100"}
+A decoration you stole from a butterfree. Might look good in your room.
+
+(link-goto:"Back", $MenuReturn)
+
+
+:: Pokemon {"position":"350,400","size":"100,100"}
+(text-colour:red)[''POKEMON'']
+
+[[Back->Menu]]
+
+(print:$Party's 1's png) lv(print:$Party's 1's lv) (link:$Party's 1's Species)[(set:$MenuReturn to 1)(goto:"PartyPokemon")] (print:$Party's 1's hp)/(print:(floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10))
+
+(if:  (length of $Party) > 1)[(print:$Party's 2's png) lv(print:$Party's 2's lv) (link:$Party's 2's Species)[(set:$MenuReturn to 2)(goto:"PartyPokemon")] (print:$Party's 2's hp)/(print:(floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10))]
+
+(if:  (length of $Party) > 2)[(print:$Party's 3's png) lv(print:$Party's 3's lv) (link:$Party's 3's Species)[(set:$MenuReturn to 3)(goto:"PartyPokemon")] (print:$Party's 3's hp)/(print:(floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10))]
+
+(if: (length of $Party) > 3)[(print:$Party's 4's png) lv(print:$Party's 4's lv) (link:$Party's 4's Species)[(set:$MenuReturn to 4)(goto:"PartyPokemon")] (print:$Party's 4's hp)/(print:(floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10))]
+
+(if:  (length of $Party) > 4)[(print:$Party's 5's png) lv(print:$Party's 5's lv) (link:$Party's 5's Species)[(set:$MenuReturn to 5)(goto:"PartyPokemon")] (print:$Party's 5's hp)/(print:(floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10))]
+
+(if:  (length of $Party) > 5)[(print:$Party's 6's png) lv(print:$Party's 6's lv) (link:$Party's 6's Species)[(set:$MenuReturn to 6)(goto:"PartyPokemon")] (print:$Party's 6's hp)/(print:(floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 6's lv)/50)+10))]
+
+
+:: Pokemon Tutorial {"position":"475,150","size":"100,100"}
+<img src="Images\PokyDex.png"> : Shockingly enough, this game has pokemon! However, you'll find that they aren't just for fighting. You can use their unique abilities to find secret quests and areas, for example. There are a lot of Pokemon, but catching them all is possible on a single save.
+
+[[Back->New Game]]
+
+
+:: Potion {"position":"225,650","size":"100,100"}
+Heal who?
+(if:$MenuReturn is "BattleItem")[<br>Current Pokemon<br>(link:($CurrentPokemon's Species))[(set:$PotionCount to it - 1)(set:($CurrentPokemon's hp to (floor:((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)))(link-goto:$MenuReturn)] ((print:$CurrentPokemon's hp)/(print:(floor:((($PKindex's ($CurrentPokemon's Species)'s Stats's 1)*$CurrentPokemon's lv)/50)+10)))<br>](else:)[(link:($Party's 1's Species))[(set:$PotionCount to it - 1)(set:$Party's 1's hp to (floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 1's hp)/(print:(floor:((($PKindex's ($Party's 1's Species)'s Stats's 1)*$Party's 1's lv)/50)+10)))
+
+(if:  (length of $Party) > 1)[(link:($Party's 2's Species))[(set:$PotionCount to it - 1)(set:$Party's 2's hp to (floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 2's hp)/(print:(floor:((($PKindex's ($Party's 2's Species)'s Stats's 1)*$Party's 2's lv)/50)+10)))]
+
+(if:  (length of $Party) > 2)[(link:($Party's 3's Species))[(set:$PotionCount to it - 1)(set:$Party's 3's hp to (floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 3's hp)/(print:(floor:((($PKindex's ($Party's 3's Species)'s Stats's 1)*$Party's 3's lv)/50)+10)))]
+
+(if:  (length of $Party) > 3)[(link:($Party's 4's Species))[(set:$PotionCount to it - 1)(set:$Party's 4's hp to (floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 4's hp)/(print:(floor:((($PKindex's ($Party's 4's Species)'s Stats's 1)*$Party's 4's lv)/50)+10)))]
+
+(if:  (length of $Party) > 4)[(link:($Party's 5's Species))[(set:$PotionCount to it - 1)(set:$Party's 5's hp to (floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 5's hp)/(print:(floor:((($PKindex's ($Party's 5's Species)'s Stats's 1)*$Party's 5's lv)/50)+10)))]
+
+(if:  (length of $Party) > 5)[(link:($Party's 6's Species))[(set:$PotionCount to it - 1)(set:$Party's 6's hp to(floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 6's lv)/50)+10))(go-to:$MenuReturn)] ((print:$Party's 6's hp)/(print:(floor:((($PKindex's ($Party's 6's Species)'s Stats's 1)*$Party's 6's lv)/50)+10)))]]
+
+(link-goto:"Back", $MenuReturn)
+
+
+:: Q1-1 {"position":"1425,1625","size":"100,100"}
+FARMER: Thanks Ash, appreciate it. Here, this is the money for the equipment. I'll pay you your personal money when you come back with the gear.
+
+Got key item: Money for Equiment (set:$Inventory to it + (a:"Money for Equipment"))
+
+[[Back->PalletField]]
+
+(set:$Qindex's Q1 to "Step 1")
+
+
+:: Q1-2 {"position":"1525,1625","size":"100,100"}
+You buy the farming equipment with the money given to you by the farmer.
+Got key item: Farming Equiment (set:$Inventory to it + (a:"Farming Equipment"))
+
+[[Back->PalletCenter]]
+
+(set:$Inventory to it - (a:"Money for Equipment"))
+
+(set:$Qindex's Q1 to "Step 2")
+
+
+:: Q1-3 {"position":"1625,1625","size":"100,100"}
+You approach the farmer with the farming equipment. 
+
+FARMER: Thanks Ash, I owe you one. Actually here, take this (+200 Gold) (set:$Gold to it + 200). Now we're even. Oh, actually let me tell you a rumor that might interest you. Apparently, each of Oak's starter pokemon can do something special in route 1. Might be worth checking out.
+
+QUEST #1 COMPLETE (set:$Qindex's Q1 to "Complete")
+
+[[Back->PalletField]]
+
+
+:: Quests {"position":"350,50","size":"100,100"}
+<img src="Images\PokyDex.png"> : Along the way, you'll find many NPCs who can give you quests. Some of them are long and epic, some of them are short and basic. There's a "main quest" of sorts, but you probably won't stay on the main path for long with the amount of side content there is.
+
+[[Back->New Game]]
+
+
+:: R1-1Passage {"position":"1400,1175","size":"100,100"}
+Charmander uses his flames to burn a way through the bush. You can now clearly see the passage, and a light at the end of it. You head through. The passage is tight, but you manage to get to the bigger lit cavern at the end of it. Blue mushrooms are making the light, which gives a calming tone to the whole cave. In the center, you see a rock pillar. On it is a satchel with 50 Pokeballs! You exit the cave.
+(set:$R1CaveFound to 1)(set:$PokeballCount to it + 50)
+[[Back->Route 1-1]]
+
+
+:: R1-2Pond {"position":"1400,1050","size":"100,100"}
+Squirtle dives into the lake, and swims its way to the bottom. You see it grab the item you spotted. It heads back to the surface. You notice that the blue skin is actually great camouflage in water. Squirtle gives you the item it found. It's a satchel containing 25 potions! You head back to the main path.
+(set:$R1PondFound to 1)(set:$PotionCount to it + 25)
+[[Back->Route 1-2]]
+
+
+:: R1-3Butter {"position":"1400,925","size":"100,100"}
+Bulbasaur uses his incredibly fast vines to grab the item straight from Butterfree's... hands? Bulbasaur gives you the item. It's a satchel, containing a Pokedex Decoration! It would look good in your room. You head back to the main path, not questioning how this Butterfree conveniently got a satchel with a decoration in it.
+(set:$R1ButterfreeFound to 1)(set:$Inventory to it + (a:"Pokedex Decoration"))
+[[Back->Route 1-3]]
+
+
+:: R1Sign {"position":"1200,1175","size":"100,100"}
+You read the wooden sign.
+
+You look at the wooden sign on a pole.
+
+(text-colour:grey)[NORTH]: VIRIDIAN CITY
+(text-colour:grey)[SOUTH]: PALLET TOWN
+
+(link-goto:"Back", $Location)
+
+
+:: Rattata {"position":"4100,100","size":"100,100"}
+ENTRY #19
+
+<img src="Images\RatataIcon.png"> ''RATTATA''
+(text-colour:gray)[(normal type)]
+
+A small purple rat. It can run impressively fast, and its bite can be powerful.
+
+Height: 0.3 m
+Weight: 3.5 kg
+
+(link-goto: "Back", $MenuReturn)
+
+
+:: Route 1-1 {"position":"1300,1175","size":"100,100"}
+ROUTE 1
+
+You're walking along Route 1. You can see Pallet Town in the valley below. In front of you are several thick bushes. One of them seems to be blocking the entrance to a small passage on the side of the road. You let (print:$Party's 1's Species) out to walk with you, and it's walking alongside you. There is a sign here.
+
+(print:$Party's 1's png) : (print:$PKindex's ($Party's 1's Species)'s Cry)
+
+[[Read Sign->R1Sign]]
+(link:"North")[(set:$Return to "Route 1-2")(go-to:"RouteEncounter")]
+[[South->PalletCenter]]
+(if: (find: _mon where _mon's Species is "Charmander", ...$Party)'s length > 0 and $R1CaveFound is 0)[[[(Charmander) Burn the bush blocking the passage->R1-1Passage]]<br>]
+[[Menu]]
+
+(set:$Location to "Route 1-1")
+(set:$EncounterTable to $Route1Table)
+
+
+:: Route 1-2 {"position":"1300,1050","size":"100,100"}
+ROUTE 1
+
+You're walking along Route 1. You're at the middle point of the path. Looking around you, you see a lake. Looks like something is at the bottom of it. Too deep for your arm to reach though, and you don't want to get wet. You let (print:$Party's 1's Species) out to walk with you, and it's walking alongside you. There is a sign here.
+
+(print:$Party's 1's png) : (print:$PKindex's ($Party's 1's Species)'s Cry)
+
+[[Read Sign->R1Sign]]
+(link:"North")[(set:$Return to "Route 1-3")(go-to:"RouteEncounter")]
+(link:"South")[(set:$Return to "Route 1-1")(go-to:"RouteEncounter")]
+(if: (find: _mon where _mon's Species is "Squirtle", ...$Party)'s length > 0 and $R1PondFound is 0)[[[(Squirtle) Make it dive to the bottom->R1-2Pond]]<br>]
+[[Menu]]
+
+(set:$Location to "Route 1-2")
+(set:$EncounterTable to $Route1Table)
+
+
+:: Route 1-3 {"position":"1300,925","size":"100,100"}
+ROUTE 1
+
+You're walking along Route 1. You can see the tall buildings of Viridian City from here. Looking around you, you see some butterfrees flying around. One of them is holding something. They're too quick for you to catch them. You let (print:$Party's 1's Species) out to walk with you, and it's walking alongside you. There is a sign here.
+
+(print:$Party's 1's png) : (print:$PKindex's ($Party's 1's Species)'s Cry)
+
+[[Read Sign->R1Sign]]
+[[North->ViridianEntry]]
+(link:"South")[(set:$Return to "Route 1-2")(go-to:"RouteEncounter")]
+(if: (find: _mon where _mon's Species is "Bulbasaur", ...$Party)'s length > 0 and $R1ButterfreeFound is 0)[[[(Bulbasaur) Make it grab the item with its vines->R1-3Butter]]<br>]
+[[Menu]]
+
+(set:$Location to "Route 1-3")
+(set:$EncounterTable to $Route1Table)
+
+
+:: RouteEncounter {"position":"1700,1100","size":"100,100"}
+(if:(random:100)<50)[
+	(set: _roll to (random:1,100))
+    (set: _total to 0)
+    
+    (for: each _entry, ...$EncounterTable)[
+    	(set: _total to _total + _entry's Rate)
+        
+        (if: _roll <= _total)[
+        	(set:$EnemySpecies to _entry's Species)
+            (set:$EnemyLevel to (random: _entry's min, _entry's max))
+            (go-to:"BattleIntro")
+        ]
+	]
+        
+
+](else:)[(go-to:$Return)]
+
+
+:: START {"position":"725,100","size":"100,100"}
+<img src="Images\PokyDex.png"> : Ready to go? You'll start your journey in Kanto. Choose a starter.
+
+[[Squirtle->SquirtleStarter]]
+
+[[Bulbasaur->BulbasaurStarter]]
+
+[[Charmander->CharmanderStarter]]
+
+
+:: Save {"position":"225,525","size":"100,100"}
+Game saved/loaded!
+
+[[Back->Menu]]
+
+(save-game:"Save")
+
+
+:: Secret {"position":"225,225","size":"100,100"}
+''DISTURBING THE PEAAAAAAAACE
+LOOK INTO MY EYEEEEEEEEEEEEEEEEEEEES
+NOW TELL ME THE THINGS YOU'VE BEEN BLABBING BEHIND MY BAAAAAAAAACK
+THE TENACITYYYYYYYYYYYYYYY
+I HOLD IT'S HARD TO BREAK DOWNNN
+IT'S TOO LATE FOR APOLOGIES
+IT'S GOING DOWWWWWN
+NOWWWW''
+
+[[back->BOOT]]
+
+
+
+
+:: Squirtle {"position":"2900,100","size":"100,100"}
+ENTRY #7
+
+<img src="Images\SquirtleIcon.png"> ''SQUIRTLE''
+(text-colour:blue)[(water type)]
+
+A small blue creature with a shell on its back. It can spit out water when attacked.
+
+Height: 0.5 m
+Weight: 9.0 kg
+
+(link-goto: "Back", $MenuReturn)
+
+
+:: SquirtleStarter {"position":"850,25","size":"100,100"}
+You chose the water pokemon Squirtle!
+
+<img src="Images\SquirtleIcon.png"> : Squirtle squirtle!
+
+<img src="Images\PokyDex.png">(text-colour:red)[ : POKEDEX UPDATED]
+[[View?->Squirtle]]
+
+[[Next->Begining]]
+
+(set:$MenuReturn to "SquirtleStarter")
+
+(set: _newPK to (dm: 
+	"Species", "Squirtle",
+    "lv", 5,
+    "hp", 14,
+    "png", "<img src='Images/SquirtleIcon.png'>",
+    "xp", 96
+))
+
+(set: $Party to $Party + (a: _newPK))
+
+(set:$Pokedex to it + (a:"Squirtle"))
+
+
+:: The Field {"position":"350,150","size":"100,100"}
+<img src="Images\PokyDex.png"> : As a Pokemon trainer, you'll spend most of your time in the fields. This game doesn't just have basic roads. You can delve into mini dungeons, do special random events, catch pokemon of course, and more! It's a huge world out there, I hope you'll be able to see all of it!
+
+[[Back->New Game]]
+
+
+:: Throw {"position":"2200,1400","size":"100,100"}
+You throw a Pokeball. (set:$PokeballCount to it - 1) (set:$Timer to 5)
+
+[[Next->CatchLoop]]
+
+
+:: TurnOrder {"position":"1825,1400","size":"100,100"}
+(if:($PKindex's ($CurrentPokemon's Species)'s Stats's 6)>=($PKindex's ($EnemySpecies)'s Stats's 6))[(set:$FirstTurn to "Player")(go-to:"PlayerMoveMath")](else:)[(set:$FirstTurn to "Enemy")(go-to:"EnemyAI")]
+
+
+:: Victory {"position":"1825,1525","size":"100,100"}
+You won! (set:_lv to $CurrentPokemon's lv)
+
+(print:$CurrentPokemon's Species) got (print: (floor:($PKindex's $EnemySpecies's BaseXP*$EnemyLevel)/7)) xp!
+
+(if:$CurrentPokemon's xp >= (floor:((6/5)*_lv*_lv*_lv)-(15*_lv*_lv)+(100*_lv)-140))[(set:$CurrentPokemon's lv to it + 1)(print: $CurrentPokemon's Species) leveled up to (print:$CurrentPokemon's lv)!<br>]
+(link-goto:"Next", $Return)
+
+(set: $CurrentPokemon's xp to it + ($PKindex's $EnemySpecies's BaseXP*$EnemyLevel)/7)
+(set: $Party's $CurrentPokemonReturn to $CurrentPokemon)
+
+
+:: ViridianEntry {"position":"1300,700","size":"100,100"}
+VIRIDIAN CITY ENTRANCE
+
+You are at the entrance to Viridian City. The dev hasn't made it that far, so here, have some 'mons as a gift.
+
+GOT EVERY POKEMON (so like 5)
+
+[[South->Route 1-3]]
+
+(set: _newPK to (dm: 
+	"Species", "Bulbasaur",
+    "lv", 5,
+    "hp", 1,
+    "png", "<img src='Images/BulbasaurIcon.png'>",
+    "xp", 96
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+(set: _newPK to (dm: 
+	"Species", "Squirtle",
+    "lv", 5,
+    "hp", 1,
+    "png", "<img src='Images/SquirtleIcon.png'>",
+    "xp", 96
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+(set: _newPK to (dm: 
+	"Species", "Charmander",
+    "lv", 5,
+    "hp", 1,
+    "png", "<img src='Images/CharmanderIcon.png'>",
+    "xp", 96
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+(set: _newPK to (dm: 
+	"Species", "Rattata",
+    "lv", 5,
+    "hp", 1,
+    "png", "<img src='Images/RatataIcon.png'>",
+    "xp", 96
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+(set: _newPK to (dm: 
+	"Species", "Pidgey",
+    "lv", 5,
+    "hp", 1,
+    "png", "<img src='Images/PidgeyIcon.png'>",
+    "xp", 96
+))
+
+(if:  (length of $Party) < 6)[(set: $Party to $Party + (a: _newPK))]
+(else:)[(set: $box to it + (a: _newPK))]
+
+
+
+:: StoryStylesheet [stylesheet]
+tw-story{
+  font-family: "Noto Sans", sans-serif !important;
+  background-color:#0f111a
+}
+
+tw-passage{
+  background-color: #131621;
+  border: 5px solid #ff0000;
+  padding: 20px
+}
+
+tw-link, a{
+  color: #66b3ff !important;
+  line-height: 1.2
+}
+
+tw-link:hover, a:hover{
+  background-color: #0f111a
+}
+
+tw-sidebar{
+  display: none
+}
